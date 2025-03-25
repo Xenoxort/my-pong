@@ -1,7 +1,10 @@
 import time
+import random
 from turtle import Turtle, Screen
 
 screen = Screen()
+
+options = [-1, 1]
 
 class Ball(Turtle):
     def __init__(self):
@@ -9,6 +12,7 @@ class Ball(Turtle):
         self.shape("circle")
         self.color("white")
         self.penup()
+        self.goto(0, 0)
         self.y_pos = 1
         self.x_pos = 1
         self.speed = 1
@@ -27,6 +31,18 @@ class Ball(Turtle):
     def bounce_paddle(self):
         self.x_pos *= -1
         self.speed *= 1.5
+
+    # Restart ball after scoring
+    def restart(self):
+        self.reset()
+        self.hideturtle()
+        self.__init__()
+        self.random_start()
+        time.sleep(1)
+
+    # Start the ball in a random direction
+    def random_start(self):
+        self.x_pos = random.choice(options)
 
 
 
