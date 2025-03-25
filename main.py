@@ -41,7 +41,19 @@ game_is_on = True
 while game_is_on:
     time.sleep(0.01)
     my_ball.move()
+
+    # Bounce wall
+    if my_ball.ycor() > (height/2 - 25) or my_ball.ycor() < -(height/2 - 25):
+        my_ball.bounce_wall()
+
+    # Bounce paddle
+    if (330 < my_ball.xcor() < 340 and my_ball.distance(right_paddle) < 50) or (-340 < my_ball.xcor() < -330 and my_ball.distance(left_paddle) < 50):
+        my_ball.bounce_paddle()
+
+
     screen.update()
+
+
 
 
 screen.exitonclick()
